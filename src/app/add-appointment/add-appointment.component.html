@@ -1,0 +1,116 @@
+<h2 class="sub-header">Make a new Appointment</h2>
+<div *ngIf="isClient" class="well">
+    <form class="form-signin">
+    <label> Date: </label>
+    <input #date class="form-control" placeholder="mm/dd/yyyy" required>
+  </form>
+  <div>
+    <form class="form-signin">
+    <div>
+    <label> Desired Time: </label>
+    <select #hour>
+      <option value="01">1</option>
+      <option value="02">2</option>
+      <option value="03">3</option>
+      <option value="04">4</option>
+      <option value="05">5</option>
+      <option value="06">6</option>
+      <option value="07">7</option>
+      <option value="08">8</option>
+      <option value="09">9</option>
+      <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="12">12</option>
+    </select>
+    <select #minute>
+      <option value="00">00</option>
+      <option value="15">15</option>
+      <option value="30">30</option>
+      <option value="45">45</option>
+    </select>
+    <select #meridiem>
+      <option value="AM">AM</option>
+      <option value="PM">PM</option>
+    </select>
+    <h3 *ngIf="!isTimeValid">You are already booked for the chosen date/time</h3>
+    <h3 *ngIf="!isInputValid">Invalid Date</h3>
+  </div>
+  <div>
+    <label> Type of Appointment: </label>
+    <select #appointmentType>
+      <option value="1">Haircut - 15min</option>
+      <option value="2">Coloring - 30min</option>
+      <option value="3">Permanent - 45min</option>
+    </select>
+    <button type="button" class="btn btn-lg btn-primary" (click)="checkAvalibilityClient(date.value,hour.value,minute.value,meridiem.value,appointmentType.value)">check avalibility</button>
+  </div>
+  </form>
+</div>
+</div>
+
+<div *ngIf="isStylist" class="well">
+    <form class="form-signin">
+    <label> Date: </label>
+    <input #date class="form-control" placeholder="mm/dd/yyyy" required>
+  </form>
+  <div>
+    <form class="form-signin">
+    <div>
+    <label> Desired Time: </label>
+    <select #hour>
+      <option value="01">1</option>
+      <option value="02">2</option>
+      <option value="03">3</option>
+      <option value="04">4</option>
+      <option value="05">5</option>
+      <option value="06">6</option>
+      <option value="07">7</option>
+      <option value="08">8</option>
+      <option value="09">9</option>
+      <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="12">12</option>
+    </select>
+    <select #minute>
+      <option value="00">00</option>
+      <option value="15">15</option>
+      <option value="30">30</option>
+      <option value="45">45</option>
+    </select>
+    <select #meridiem>
+      <option value="AM">AM</option>
+      <option value="PM">PM</option>
+    </select>
+    <h3 *ngIf="!isTimeValid">You are already booked for the chosen date/time</h3>
+    <h3 *ngIf="!isInputValid">Invalid Date</h3>
+  </div>
+  <div>
+    <label> Type of Appointment: </label>
+    <select #appointmentType>
+      <option value="1">Haircut - 15min</option>
+      <option value="2">Coloring - 30min</option>
+      <option value="3">Permanent - 45min</option>
+    </select>
+    <button type="button" class="btn btn-lg btn-primary" (click)="checkAvalibilityStylist(date.value,hour.value,minute.value,meridiem.value,appointmentType.value)">check avalibility</button>
+  </div>
+  </form>
+</div>
+</div>
+
+<h2 class="sub-header" *ngIf="isClient">Avalible Stylists</h2>
+<ul class="stylistList" *ngIf="isClient">
+  <li *ngFor="let stylist of Stylists" (click)="onStylistSelect(stylist)" [class.selected]="stylist === selectedUser">
+    <span class="capitalize">{{stylist.firstName}}</span>
+    <span class="capitalize">{{stylist.lastName}}</span>
+  </li>
+</ul>
+
+<h2 class="sub-header" *ngIf="isStylist">Avalible Clients</h2>
+<ul class="stylistList" *ngIf="isStylist">
+  <li *ngFor="let client of Clients" (click)="onClientSelect(client)" [class.selected]="client === selectedUser">
+    <span class="capitalize">{{client.firstName}}</span>
+    <span class="capitalize">{{client.lastName}}</span>
+  </li>
+</ul>
+
+<button *ngIf="userSelected" type="button" class="btn btn-lg btn-primary" (click)="bookAppointment()">Book Appointment</button>

@@ -1,0 +1,33 @@
+<h2 class="sub-header">View Appointment</h2>
+<form novalidate class="form-signin">
+  <div class="well">
+  <div>
+    <label> Stylist: </label>
+    <input disabled name="stylist" [(ngModel)]="appointment.stylistName" class="form-control" required>
+  </div>
+  <div>
+    <label> Client: </label>
+    <input disabled name="client" [(ngModel)]="appointment.clientName" class="form-control" required>
+  </div>
+  <div>
+    <label> Type of Appointment: </label>
+    <input disabled name="appointmentType" [(ngModel)]="appointment.appointmentType" class="form-control" required>
+</div>
+  <div>
+    <label> Date: </label>
+    <input disabled name="date" [(ngModel)]="appointment.date" class="form-control" required>
+  </div>
+  <div>
+    <label> Time: </label>
+    <input disabled name="time" [(ngModel)]="appointment.time[0]" class="form-control" required>
+</div>
+  <div>
+    <label> Length: </label>
+    <input disabled name="length" [(ngModel)]="duration" class="form-control" required>
+  </div>
+</div>
+</form>
+<div class="row">
+  <button type="button" class="btn btn-lg btn-default" (click)="goBack()">Go Back</button>
+  <button type="button" class="btn btn-lg btn-danger" (click)="deleteAppointment()">Cancel Appointment</button>
+</div>

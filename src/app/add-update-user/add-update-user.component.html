@@ -1,0 +1,34 @@
+<h2 *ngIf="this.isUpdate"class="sub-header">Update User</h2>
+<h2 *ngIf="!this.isUpdate"class="sub-header">Create User</h2>
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate class="form-signin">
+  <div class="well">
+  <div>
+    <label> First Name: </label>
+    <input name="first" [(ngModel)]="first" class="form-control" required>
+  </div>
+  <div>
+    <label> Last Name: </label>
+    <input name="last" [(ngModel)]="last" class="form-control" required>
+  </div>
+  <div>
+    <label> Username: </label>
+    <input name="username"  [(ngModel)]="username" class="form-control" required>
+  </div>
+  <div>
+    <label> Email Address: </label>
+    <input name="email"  [(ngModel)]="email" class="form-control" required>
+</div>
+  <div>
+    <label> Password: </label>
+    <input name="password" [(ngModel)]="password" type="password" class="form-control" required>
+  </div>
+</div>
+<div class="row">
+  <button type="button" class="btn btn-lg btn-primary" (click)="onSubmit(f)">Submit</button>
+</div>
+</form>
+<div class="row">
+  <button *ngIf="this.isUpdate" type="button" class="btn btn-lg btn-default" (click)="cancelChanges()">Cancel Changes</button>
+  <button *ngIf="!this.isUpdate" type="button" class="btn btn-lg btn-default" (click)="cancelChanges()">Go Back</button>
+  <button *ngIf="this.isUpdate" type="button" class="btn btn-lg btn-danger" (click)="deleteAccount()">Delete Account</button>
+</div>

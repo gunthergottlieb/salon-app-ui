@@ -1,0 +1,16 @@
+<div>
+<h2 class="sub-header">Stylists</h2>
+<button type="button" class="btn btn-lg btn-primary" (click)="createStylist()">Create Stylist</button>
+</div>
+<div class="labels">
+  <span class="col-md-4">Name: </span>
+  <span class="col-md-4">Username: </span>
+</div>
+<div>
+<ul class="stylistList">
+  <li *ngFor="let stylist of Stylists" (click)="onUserSelect(stylist)" [class.selected]="stylist === selectedStylist">
+    <span class="col-md-4 capitalize">{{stylist.firstName}} {{stylist.lastName}}</span>
+    <span class="col-md-4">{{stylist.username}}</span>
+  </li>
+</ul>
+</div>

@@ -1,0 +1,17 @@
+<h2 class="sub-header">My Appointments</h2>
+<ul *ngIf="isClient" class="appointmentList">
+  <li *ngFor="let Appointment of Appointments"  (click)="onUserSelect(Appointment)" [class.selected]="appointment === selectedAppointment">
+    <span>{{Appointment.appointmentType}} with </span>
+    <span class="capitalize">{{Appointment.stylistName}} at</span>
+    <span class="capitalize">{{Appointment.time[0]}} on </span>
+    <span>{{Appointment.date}}</span>
+  </li>
+</ul>
+<ul *ngIf="isStylist" class="appointmentList">
+  <li *ngFor="let Appointment of Appointments" (click)="onUserSelect(Appointment)" [class.selected]="appointment === selectedAppointment">
+    <span>{{Appointment.appointmentType}} with </span>
+    <span class="capitalize">{{Appointment.clientName}} at</span>
+    <span class="capitalize">{{Appointment.time[0]}} on </span>
+    <span>{{Appointment.date}}</span>
+  </li>
+</ul>
